@@ -189,3 +189,5 @@ function handleAddTask(event) {
     // Close the modal after adding the task
     $("#formModal").modal("hide");
   }
+
+  
