@@ -111,23 +111,26 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
     // Get the task card element that was dropped
     let taskCard = ui.draggable;
-  
+
     // Get the ID of the task from the task card element
     let taskId = taskCard.attr("id").replace("task-", "");
-  
+
     // Determine the status lane where the task was dropped
     let statusLane = $(this).attr("id");
-  
+
     // Update the progress state of the task based on the status lane
     let updatedTask = taskList.find(task => task.id === parseInt(taskId));
     updatedTask.progress = statusLane;
-  
+
+    // Move the task card to the corresponding lane in the UI
+    taskCard.detach().appendTo(`#${statusLane}-cards`);
+
     // Save the updated taskList to localStorage
     localStorage.setItem("tasks", JSON.stringify(taskList));
-  
+
     // Render the updated task list
     renderTaskList();
-  }
+}
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
