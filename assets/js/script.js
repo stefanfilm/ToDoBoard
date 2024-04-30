@@ -136,14 +136,14 @@ function handleDrop(event, ui) {
   // Update the progress state of the task based on the status lane
   let updatedTask = taskList.find(task => task.id === parseInt(taskId));
   if (updatedTask) { 
-      updatedTask.status = statuslane; 
+      updatedTask.status = statusLane; 
   } else { 
       console.error("Task not found in task list:", taskId);
       return;
   }
   
 
-  //updatedTask.progress = statusLane;
+  // updatedTask.progress = statusLane;
 
   // Move the task card to the corresponding lane in the UI
   
