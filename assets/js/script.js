@@ -43,16 +43,19 @@ function renderTaskList() {
     // Append the task card to the task list container
     // Separate cards to the correct status of completion
     if (task.status === "to-do") { 
+      taskCard.addClass ("bg-success")
       $("#todo-cards").append(taskCard)
       
     }
 
-    if (task.status === "in-progress") { 
+    if (task.status === "in-progress") {
+      taskCard.addClass ("bg-warning") 
       $("#in-progress-cards").append(taskCard)
       
     }
 
     if (task.status === "done") { 
+      taskCard.addClass ("bg-danger") 
       $("#done-cards").append(taskCard)
       
     }
@@ -211,7 +214,7 @@ function handleAddTask(event) {
   let title = $("#taskTitle").val();
   let description = $("#taskDescription").val();
   let dueDate = $("#dueDate").val();
-
+console.log (dueDate, typeof(dueDate))
   // Create a new task object with the input values and a unique ID
   let newTask = {
     id: generateTaskId(),
@@ -219,7 +222,8 @@ function handleAddTask(event) {
     description: description,
     dueDate: dueDate,
     status: "to-do"
-  };
+  }
+
 
   // Add the new task to the taskList array
   taskList.push(newTask);
@@ -229,6 +233,8 @@ function handleAddTask(event) {
 
   // Render the updated task list
   renderTaskList();
+
+
 
   // Clear the form inputs after adding the task
   $("#taskTitle").val("");
