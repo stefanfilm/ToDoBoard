@@ -39,6 +39,15 @@ function renderTaskList() {
     // Create a task card for each task
     let taskCard = createTaskCard(task);
 
+    if(task.dueDate && task.status !== 'done') {
+  const now = dayjs();
+  const taskDueDate = dayjs (task.dueDate, 'DD/MM/YYYY');
+  if (now.isSame(taskDueDate, 'day')) {
+    taskCard.addClass ('bg-warning text-white');
+  } else if (now.isAfter(taskDueDate)) { 
+    taskCard.addClass ('bg-danger text-white');
+  }
+}
     
     // Append the task card to the task list container
     // Separate cards to the correct status of completion
@@ -55,7 +64,7 @@ function renderTaskList() {
     }
 
     if (task.status === "done") { 
-      taskCard.addClass ("bg-danger") 
+      taskCard.addClass ("bg-success") 
       $("#done-cards").append(taskCard)
       
     }
@@ -91,6 +100,8 @@ function handleAddTask(event) {
     description: description,
     dueDate: dueDate
   };
+
+
 
   // Add the new task to the taskList array
   taskList.push(newTask);
@@ -250,3 +261,4 @@ console.log (dueDate, typeof(dueDate))
   // Close the modal after adding the task
   $("#formModal").modal("hide");
 }
+
