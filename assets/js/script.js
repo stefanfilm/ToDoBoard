@@ -52,7 +52,7 @@ function renderTaskList() {
     // Append the task card to the task list container
     // Separate cards to the correct status of completion
     if (task.status === "to-do") { 
-      taskCard.addClass ("bg-success")
+      taskCard.addClass ("bg-primary")
       $("#todo-cards").append(taskCard)
       
     }
